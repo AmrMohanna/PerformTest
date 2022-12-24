@@ -16,6 +16,13 @@ public class InvoiceLine {
    public  InvoiceLine (){
        
    }
+   public InvoiceLine(String itemName , double price ,int count  ,InvoiceHeader invHeader ){
+       this.inv=invHeader;
+       this.itemName=itemName;
+       this.countItem=count;
+       this.price=price;
+       
+   }
 
     public double getTotal(){
         return countItem*price;
@@ -52,10 +59,14 @@ public class InvoiceLine {
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
+     public String getFromCSV(){
+        return inv.getInvoiceNumber()+","+countItem +","+itemName+","+price;
+    }
+    
 
     @Override
     public String toString() {
-        return "InvoiceLine{" + "inv=" + inv + ", countItem=" + countItem + ", itemName=" + itemName + ", price=" + price + '}';
+        return "InvoiceLine{" + "inv=" + inv.getInvoiceNumber() + ", countItem=" + countItem + ", itemName=" + itemName + ", price=" + price + '}';
     }
    
     

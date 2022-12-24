@@ -7,25 +7,36 @@ package view;
 import java.awt.List;
 import java.util.*;
 import java.util.function.Supplier;
+import javax.swing.JDialog;
 
 import javax.swing.table.DefaultTableModel;
 import model.InvoiceHeader;
 import model.InvoiceLine;
-import static view.InvoiveMainView.tableHeader;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Amr Mehanna
+ * 
+ * 
  */
-public class AddItemView extends javax.swing.JFrame {
+
+
+public class AddItemView extends JDialog{
+     public AddItemView(InvoiveMainView invMain){
+       initComponents();
+        
+        okAddItem.addActionListener(invMain.getContrroller());
+       cancelAddItem.addActionListener(invMain.getContrroller());
+     }
+    
+ 
 
     /**
      * Creates new form AddItemView
      * @param aThis
      */
-    public AddItemView(InvoiveMainView aThis) {
-        initComponents();
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -117,7 +128,7 @@ public class AddItemView extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jIvoiceDate.setText("Item Name");
 
@@ -212,89 +223,32 @@ public class AddItemView extends javax.swing.JFrame {
 
     private void cancelAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAddItemActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+       // this.setVisible(false);
        
     }//GEN-LAST:event_cancelAddItemActionPerformed
 
     private void okAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okAddItemActionPerformed
-        // TODO add your handling code here:
-           //invoiceNumberInt +=1;
-           
-       /*String itemNumber =tItemName.getText();
-       String itemCount =tItemCount.getText();
-       String itemPrice =tItemPrice.getText();
-*/
        
-      // String invoiceNumber =Integer.toString(invoiceNumberInt);
-
-
-        //Date date1converted =Date.from(tInvoiceDate.getText());
-         InvoiceLine invLine = new InvoiceLine();
-         InvoiceHeader invh=new InvoiceHeader();
-         //InvoiveMainView invMain=new InvoiveMainView();
-          
-        /*TableModel model2 = invh.tableHeader.getModel();
-        int indexs = tableHeader.getSelectedRow();
-        String id = (String) model1.getValueAt(indexs, 0);
-           */
-         invLine.setItemName(tItemName.getText());
-         invLine.setCountItem(Integer.parseInt(tItemCount.getText()));
-         invLine.setPrice(Integer.parseInt(tItemPrice.getText()));
-        invLine.getTotal();
-        int x = InvoiveMainView.tableline.getRowCount();
-        int index =4;
-        
-        ArrayList<InvoiceLine>listTotal=new ArrayList<>();
-        
-        for (int i=0 ;i<x;i++){
-        listTotal.add(invLine);
-        }
-       invh.getTotal(listTotal);
-       // InvoiveMainView.jInvoiceTotal.setText(Double.toString(invh.getTotal(listTotal)));
-
-        
-       // List<double> totalInvoice ;
-       // List<Integer> totalInvoice = new ArrayList<>(Arrays.asList());
-        //totalInvoice.add(3)
-        // String x =Integer.toString(invh.getInvoiceNumber());
-
-        // invHeader.setCustomerName(tCustomerName.getText());
-        // invHeader.setInvoiceNumber(invoiceNumber);
-       // Date date =Date.from(Instant.parse(tCustomerName.getText()));
-        // invHeader.setDate(date);
-        
-         String [] items ={"1",invLine.getItemName(),Integer.toString(invLine.getCountItem()),Double.toString(invLine.getPrice()),
-                 Double.toString(invLine.getTotal())};
-         //invSummary.setDate((Date.parse(tInvoiceDate.getText())));
-      //  String [] items ={Integer.parseInt(itemNumber),Integer.parseInt(itemCount),Integer.parseInt(itemPrice)};
-       // String [] items ={"2","25","36"};
-
-       // DefaultTableModel tableModel=(DefaultTableModel)InvoiceMainView.tableHeader.gette();
-       // tableModel.addRow(items);
-       AddRowToJTable(items);
-       //invMain.jInvoiceTotal.setText(Double.toString(invh.getTotal()));
-
-      //InvoiveMainView inview=new InvoiveMainView();
-      
     }//GEN-LAST:event_okAddItemActionPerformed
 
     private void tItemPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tItemPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tItemPriceActionPerformed
         public static void AddRowToJTable(Object[] dataRow){
-         DefaultTableModel model=(DefaultTableModel)InvoiveMainView.tableline.getModel();
-       //DefaultTableModel model = (DefaultTableModel)tableSummary.getModel();
-        model.addRow(dataRow);
+        
+      
         }
     /**
      * @param args the command line arguments
      */
+        /*
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        /*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -314,12 +268,14 @@ public class AddItemView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        /*
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                // new AddItemView(this).setVisible(true);
             }
         });
     }
+*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelAddItem;
@@ -337,4 +293,17 @@ public class AddItemView extends javax.swing.JFrame {
     private javax.swing.JTextField tItemName;
     private javax.swing.JTextField tItemPrice;
     // End of variables declaration//GEN-END:variables
+   public  JTextField getTItemName(){
+        return tItemName;
+    }
+    public  JTextField getTItemCount(){
+        return tItemCount;
+    }
+    public  JTextField getTItemPrice(){
+        return tItemPrice;
+    }
+
+
+
+
 }
